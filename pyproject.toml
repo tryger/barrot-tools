@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "barrot-tools"
+dynamic = ["version"]
+description = "Reverse engineering tools for Barrot Bluetooth chips (BR1001, BR8051, BR8551, ...)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pyserial",
+    "scapy",
+    "usbbluetooth",
+]
+
+[project.scripts]
+br1001 = "barrot_tools.br1001.cli:main"
+br-hci = "barrot_tools.brt_hci_spec.cli:main"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/barrot_tools"]
